@@ -55,6 +55,7 @@ function calculateSavings(incomeID, savingID) {
     if (savingPercent > 0 && savingAmount < balance && savingAmount > 0) {
         document.getElementById("saving-amount").innerHTML = savingAmount;
         document.getElementById("remaining-amount").innerHTML = remainingBalance;
+        document.getElementById('saving-error').style.display = 'none';
     } else {
         document.getElementById('saving-error').style.display = 'block';
         document.getElementById('saving-error').innerHTML = savingID+' must be positive '+ '& saving-amount '+' must be less than savings!';
