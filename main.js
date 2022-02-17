@@ -5,15 +5,18 @@ function calculateExpense(incomeID, foodID, rentID, clothesID) {
     const foodExpense = getInputValues(foodID);
     const rentExpense = getInputValues(rentID);
     const clothesExpense = getInputValues(clothesID);
-
+    console.log(income,foodExpense,rentExpense,clothesExpense)
     // calling input error function
+    if (income == NaN) {
+        console.log('not a number')
+    }
     inputError(income, incomeID, 'income-error');
     inputError(foodExpense, foodID, 'food-error');
     inputError(rentExpense, rentID, 'rent-error');
     inputError(clothesExpense, clothesID, 'cloth-error');
 
     // check negative value and calculate expense
-    if (income > 0 && foodExpense > 0 && rentExpense > 0 && clothesExpense > 0) {
+    if (income > 0 && foodExpense > 0 && rentExpense > 0 && clothesExpense > 0 && income !=NaN && foodExpense !=NaN && rentExpense !=NaN && clothesExpense !=NaN) {
         const totalExpense = foodExpense + rentExpense + clothesExpense
         const balance = income - totalExpense;
 
@@ -35,9 +38,9 @@ function calculateExpense(incomeID, foodID, rentID, clothesID) {
 // input error function
 function inputError(amount, amountID, errorID) {
     console.log(amount,errorID,amountID)
-    if (amount < 0) {
+    if (amount < 0 || isNaN(amount) == true) {
         document.getElementById(errorID).style.display = 'block'
-        document.getElementById(errorID).innerHTML = amountID + " can't be a negative number";
+        document.getElementById(errorID).innerHTML = amountID + " can't be a negative or string";
     }
 }
 
@@ -69,7 +72,6 @@ function calculateSavings(incomeID, savingID) {
 
 // get input values
 function getInputValues(id) {
-
     const value = parseFloat(document.getElementById(id).value);
     return value;
 }
