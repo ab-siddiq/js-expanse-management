@@ -19,14 +19,21 @@ function calculateExpense(incomeID, foodID, rentID, clothesID) {
     if (income > 0 && foodExpense > 0 && rentExpense > 0 && clothesExpense > 0 && income !=NaN && foodExpense !=NaN && rentExpense !=NaN && clothesExpense !=NaN) {
         const totalExpense = foodExpense + rentExpense + clothesExpense
         const balance = income - totalExpense;
-
-        document.getElementById("expense-amount").innerHTML = totalExpense;
+        if (totalExpense > income) {
+            document.getElementById('expense-error').style.display = 'block';
+            document.getElementById('expense-error').innerHTML = 'expense can\'t be more than income';
+            document.getElementById("expense-amount").innerHTML = 0;
+            document.getElementById("balance-amount").innerHTML = 0;
+        } else {
+            document.getElementById("expense-amount").innerHTML = totalExpense;
         document.getElementById("balance-amount").innerHTML = balance;
-
+        document.getElementById('expense-error').style.display = 'none';
         document.getElementById('income-error').style.display = 'none';
         document.getElementById('food-error').style.display = 'none';
         document.getElementById('rent-error').style.display = 'none';
         document.getElementById('cloth-error').style.display = 'none';
+        }
+        
 
     } else {
         document.getElementById("expense-amount").innerHTML = 0;
